@@ -1,4 +1,4 @@
-package ec.edu.espe.examen.config;
+package ec.edu.espe.arquitectura.corebanquito.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;

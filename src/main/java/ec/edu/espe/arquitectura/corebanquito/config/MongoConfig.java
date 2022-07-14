@@ -1,4 +1,4 @@
-package ec.edu.espe.examen.config;
+package ec.edu.espe.arquitectura.corebanquito.config;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;

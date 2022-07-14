@@ -7,6 +7,8 @@ import ec.edu.espe.arquitectura.corebanquito.model.Cuenta;
 import ec.edu.espe.arquitectura.corebanquito.model.Transferencia;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -22,13 +24,15 @@ public class TransferenciaService {
     public void   transferir(Transferencia transferencia){
 
        Cuenta cuentaOrigen  =validarCuenta(transferencia.getCuentaOrigen());
-        Cuenta ceuntaDestino= validarCuenta(transferencia.getCuentaDestino());
+        Cuenta cuentaDestino= validarCuenta(transferencia.getCuentaDestino());
 
         if(cuentaOrigen.getSaldo().compareTo(transferencia.getValor())< 0){
             throw new EntityNotFoundException(
                     "Saldo insuficenteen la cuenta origen ");
         }
-
+        BigDecimal adicionarCuDestino =  cuentaDestino.getSaldo().add(transferencia.getValor());
+        cuentaDestino.setSaldo(adicionarCuDestino);
+        transferencia.setFecha(new Date());
         this.transferenciaRepository.save(transferencia);
     }
 
@@ -38,4 +42,6 @@ public class TransferenciaService {
         return groupOpt.orElseThrow(
                 () -> new EntityNotFoundException("La cuenta no  existe"));
     }
+
+
 }

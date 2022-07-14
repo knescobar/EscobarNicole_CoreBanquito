@@ -1,4 +1,7 @@
-package ec.edu.espe.arquitectura.corebanquito.repository;
+package ec.edu.espe.arquitectura.corebanquito.dao;
 
-public class TransferenciaDao {
+import ec.edu.espe.arquitectura.corebanquito.model.Transferencia;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+public interface TransferenciaRepository   extends MongoRepository<Transferencia, String> {
 }
